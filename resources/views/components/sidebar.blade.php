@@ -934,7 +934,28 @@
       </div>
       <div class="nav-item dropdown">
         <a aria-label="Open user menu" class="nav-link d-flex lh-1 p-0 px-2" data-bs-toggle="dropdown" href="#">
-          <span class="avatar avatar-sm" style="background-image: url({{ Auth::user()->profile_photo }})"> </span>
+          @if (Auth::user()->profile_photo)
+            <span class="avatar avatar-0" style="background-image: url('{{ Auth::user()->profile_photo }}')"> </span>
+          @else
+            <span class="avatar avatar-0">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="icon avatar-icon icon-2"
+    >
+      <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"/>
+      <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
+    </svg>
+  </span>
+          @endif
+
           <div class="d-none d-xl-block ps-2">
             <div>Paweł Kuna</div>
             <div class="mt-1 small text-secondary">UI Designer</div>
@@ -980,8 +1001,8 @@
 
         <!-- Pengelolaan Pengguna (Admin) -->
         @can('create user')
-          <li class="nav-item">
-            <a class="nav-link" href="./pengelolaan-pengguna">
+          <li class="nav-item {{ $currentPage == 'Pengguna' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('users.index') }}">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

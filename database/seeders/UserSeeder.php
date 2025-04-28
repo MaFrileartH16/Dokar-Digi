@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
     // Non-production: create users & assign roles
     if (App::environment(['local', 'development', 'testing']) || config('app.debug')) {
-      User::factory(4)->create();
+      User::factory(100)->create();
 
       collect(['Kepala Perpustakaan', 'Gugus Mutu'])->each(function ($role) use ($admin) {
         User::where('id', '!=', $admin->id)
